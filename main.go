@@ -75,8 +75,8 @@ func handleGetUserByID(w http.ResponseWriter, id int) {
 	usersLock.Lock()
 	defer usersLock.Unlock()
 
-	user, exists := users[id]
-	if !exists {
+	user, ok := users[id]
+	if !ok {
 		http.Error(w, "User not found", http.StatusNotFound)
 		return
 	}
